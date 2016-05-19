@@ -28,6 +28,8 @@
 #ifndef ROCKETCOREPLUGINREGISTRY_H
 #define ROCKETCOREPLUGINREGISTRY_H
 
+#include <Rocket/Core/Header.h>
+
 namespace Rocket {
 namespace Core {
 
@@ -40,7 +42,7 @@ class Plugin;
 	@author Peter Curry
  */
 
-class PluginRegistry
+class ROCKETCORE_API PluginRegistry
 {
 public:
 	static void RegisterPlugin(Plugin* plugin);
