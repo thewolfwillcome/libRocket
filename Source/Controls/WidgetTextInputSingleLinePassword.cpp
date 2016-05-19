@@ -44,7 +44,8 @@ void WidgetTextInputSingleLinePassword::SetValue(const Core::String& value)
 {
 	Core::String sanitised_value(value);
 	SanitiseValue(sanitised_value);
-	WidgetTextInput::SetValue(Core::String(sanitised_value.Length(), (Rocket::Core::word) '*'));
+	Core::WString wString_sanitised_value(sanitised_value);
+	WidgetTextInput::SetValue(Core::String(wString_sanitised_value.Length(), (Rocket::Core::word) '*'));
 }
 
 }
