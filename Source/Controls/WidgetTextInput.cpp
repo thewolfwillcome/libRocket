@@ -490,8 +490,8 @@ bool WidgetTextInput::DeleteCharacter(bool back)
 // Copies the selection (if any) to the clipboard.
 void WidgetTextInput::CopySelection()
 {
-	const Core::String& value = GetElement()->GetAttribute< Rocket::Core::String >("value", "");
-	Clipboard::Set(Core::String(value.Substring(selection_begin_index, selection_length)));
+	const Core::WString value = GetElement()->GetAttribute< Rocket::Core::String >("value", "");
+	Clipboard::Set(value.Substring(selection_begin_index, selection_length));
 }
 
 // Returns the absolute index of the cursor.
