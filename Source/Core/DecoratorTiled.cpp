@@ -113,6 +113,16 @@ void DecoratorTiled::Tile::GenerateGeometry(std::vector< Vertex >& vertices, std
 	if (element_colour)
 		quad_colour = element_colour->Get<Colourb>();
 	
+	const Property* element_opacity = element->GetProperty(OPACITY);
+	if (element_opacity)
+	{
+		const float opacity = element_opacity->Get<float>();
+		if (opacity < 1.0f && opacity >= 0.0f)
+		{
+			quad_colour.alpha = floor(quad_colour.alpha * opacity);
+		}
+	}
+
 	TileDataMap::iterator data_iterator = data.find(render_interface);
 	if (data_iterator == data.end())
 		return;

@@ -156,6 +156,16 @@ void ElementImage::OnAttributeChange(const Rocket::Core::AttributeNameList& chan
 		DirtyLayout();
 }
 
+void ElementImage::OnPropertyChange(const PropertyNameList& changed_properties)
+{
+	// Call base implementation
+	Element::OnPropertyChange(changed_properties);
+	if (changed_properties.find(OPACITY) != changed_properties.end())
+	{
+		DirtyLayout();
+	}
+}
+
 // Regenerates the element's geometry.
 void ElementImage::ProcessEvent(Rocket::Core::Event& event)
 {
@@ -201,11 +211,13 @@ void ElementImage::GenerateGeometry()
 		texcoords[1] = Vector2f(1, 1);
 	}
 
+	const float opacity = GetProperty<float>(OPACITY);
+
 	Rocket::Core::GeometryUtilities::GenerateQuad(&vertices[0],									// vertices to write to
 												  &indices[0],									// indices to write to
 												  Vector2f(0, 0),					// origin of the quad
 												  GetBox().GetSize(Rocket::Core::Box::CONTENT),	// size of the quad
-												  Colourb(255, 255, 255, 255),		// colour of the vertices
+												  Colourb(255, 255, 255, floor(opacity == 1.0 ? 255 : opacity * 256.0)),		// colour of the vertices
 												  texcoords[0],									// top-left texture coordinate
 												  texcoords[1]);								// top-right texture coordinate
 
