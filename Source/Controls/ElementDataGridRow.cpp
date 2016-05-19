@@ -304,7 +304,7 @@ void ElementDataGridRow::RefreshRows()
 // children.
 void ElementDataGridRow::ChildChanged(int child_row_index)
 {
-	for (int i = child_row_index + 1; i < (int)children.size(); i++)
+	for (int i = child_row_index; i < (int)children.size(); i++)
 	{
 		children[i]->DirtyTableRelativeIndex();
 	}
