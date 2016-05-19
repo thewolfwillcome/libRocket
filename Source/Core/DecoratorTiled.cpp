@@ -119,7 +119,7 @@ void DecoratorTiled::Tile::GenerateGeometry(std::vector< Vertex >& vertices, std
 		const float opacity = element_opacity->Get<float>();
 		if (opacity < 1.0f && opacity >= 0.0f)
 		{
-			quad_colour.alpha = floor(quad_colour.alpha * opacity);
+			quad_colour.alpha = (byte)floor(quad_colour.alpha * opacity);
 		}
 	}
 

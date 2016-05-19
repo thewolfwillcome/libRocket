@@ -70,7 +70,7 @@ void ElementBackground::GenerateBackground()
 	float opacity = element->GetProperty<float>(OPACITY);
 
 	// Apply opacity
-	colour.alpha = floor(colour.alpha * opacity);
+	colour.alpha = (byte)floor(colour.alpha * opacity);
 
 	if (colour.alpha <= 0)
 	{

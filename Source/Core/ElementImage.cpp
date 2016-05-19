@@ -93,7 +93,7 @@ void ElementImage::OnAttributeChange(const Rocket::Core::AttributeNameList& chan
 	// Call through to the base element's OnAttributeChange().
 	Rocket::Core::Element::OnAttributeChange(changed_attributes);
 
-	float dirty_layout = false;
+	bool dirty_layout = false;
 
 	// Check for a changed 'src' attribute. If this changes, the old texture handle is released,
 	// forcing a reload when the layout is regenerated.
@@ -162,7 +162,9 @@ void ElementImage::OnPropertyChange(const PropertyNameList& changed_properties)
 	Element::OnPropertyChange(changed_properties);
 	if (changed_properties.find(OPACITY) != changed_properties.end())
 	{
-		DirtyLayout();
+		// Opacity changed mark the geometry dirty so that it gets regenerated
+		// We could also change the color of the vertex data of the geometry, but this doesn't work due the usage of compiled geometries
+		geometry_dirty = true;
 	}
 }
 
@@ -217,7 +219,7 @@ void ElementImage::GenerateGeometry()
 												  &indices[0],									// indices to write to
 												  Vector2f(0, 0),					// origin of the quad
 												  GetBox().GetSize(Rocket::Core::Box::CONTENT),	// size of the quad
-												  Colourb(255, 255, 255, floor(opacity == 1.0 ? 255 : opacity * 256.0)),		// colour of the vertices
+												  Colourb(255, 255, 255, floor(opacity == 1.0 ? 255 : (byte)(opacity * 256.0f))),		// colour of the vertices
 												  texcoords[0],									// top-left texture coordinate
 												  texcoords[1]);								// top-right texture coordinate
 
