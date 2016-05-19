@@ -151,16 +151,19 @@ Element::~Element()
 
 void Element::Update()
 {
-	ReleaseElements(deleted_children);
-	active_children = children;
-	for (size_t i = 0; i < active_children.size(); i++)
-		active_children[i]->Update();
+	if (visible)
+	{
+		ReleaseElements(deleted_children);
+		active_children = children;
+		for (size_t i = 0; i < active_children.size(); i++)
+			active_children[i]->Update();
 
-	// Force a definition reload, if necessary.
-	style->GetDefinition();
+		// Force a definition reload, if necessary.
+		style->GetDefinition();
 
-	scroll->Update();
-	OnUpdate();
+		scroll->Update();
+		OnUpdate();
+	}
 }
 
 void Element::Render()
