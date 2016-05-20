@@ -108,11 +108,8 @@ Vector2f DecoratorTiled::Tile::GetDimensions(Element* element)
 void DecoratorTiled::Tile::GenerateGeometry(std::vector< Vertex >& vertices, std::vector< int >& indices, Element* element, const Vector2f& surface_origin, const Vector2f& surface_dimensions, const Vector2f& tile_dimensions) const
 {
 	RenderInterface* render_interface = element->GetRenderInterface();
-	const Property* element_colour = element->GetProperty(COLOR);
 	Colourb quad_colour = Colourb(255, 255, 255);
-	if (element_colour)
-		quad_colour = element_colour->Get<Colourb>();
-	
+
 	const Property* element_opacity = element->GetProperty(OPACITY);
 	if (element_opacity)
 	{
