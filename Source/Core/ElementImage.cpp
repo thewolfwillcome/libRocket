@@ -219,7 +219,7 @@ void ElementImage::GenerateGeometry()
 												  &indices[0],									// indices to write to
 												  Vector2f(0, 0),					// origin of the quad
 												  GetBox().GetSize(Rocket::Core::Box::CONTENT),	// size of the quad
-												  Colourb(255, 255, 255, floor(opacity == 1.0 ? 255 : (byte)(opacity * 256.0f))),		// colour of the vertices
+												  Colourb(255, 255, 255, (byte)floor(opacity == 1.0 ? 255 : (byte)(opacity * 256.0f))),		// colour of the vertices
 												  texcoords[0],									// top-left texture coordinate
 												  texcoords[1]);								// top-right texture coordinate
 
