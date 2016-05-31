@@ -153,13 +153,7 @@ bool Context::Render()
 	// Update the layout for all documents in the root. This is done now as events during the
 	// update may have caused elements to require an update.
 	for (int i = 0; i < root->GetNumChildren(); ++i)
-	{
-		Element* element = root->GetChild(i);
-		if (element->IsVisible())
-		{
-			element->UpdateLayout();
-		}
-	}
+		root->GetChild(i)->UpdateLayout();
 
 	render_interface->context = this;
 	ElementUtilities::ApplyActiveClipRegion(this, render_interface);
@@ -1049,13 +1043,7 @@ Element* Context::GetElementAtPoint(const Vector2f& point, const Element* ignore
 {
 	// Update the layout on all documents prior to this call.
 	for (int i = 0; i < GetNumDocuments(); ++i)
-	{
-		Element* element = GetDocument(i);
-		if (element->IsVisible())
-		{
-			element->UpdateLayout();
-		}
-	}
+		GetDocument(i)->UpdateLayout();
 
 	if (element == NULL)
 	{
