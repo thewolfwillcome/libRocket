@@ -1570,8 +1570,8 @@ void Element::OnPropertyChange(const PropertyNameList& changed_properties)
 
 	if (changed_properties.find(OPACITY) != changed_properties.end())
 	{
-		// Reload decorators so that the opacity value can be applied by decorators supporting it
-		GetElementDecoration()->ReloadDecorators();
+        //Lookout this causes an reload of the decorators, so don't call it for too many properties
+		GetElementDecoration()->DirtyDecoratorsOnPropertyChanged();
 	}
 
 	// Dirty the background if it's changed.

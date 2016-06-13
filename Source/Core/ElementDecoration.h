@@ -56,8 +56,11 @@ public:
 	/// Renders all appropriate decorators.
 	void RenderDecorators();
 
-	/// Mark decorators as dirty and force them to reset themselves
+	/// Mark active decorators as dirty and force them to reset themselves
 	void DirtyDecorators();
+
+	/// Marks the decorators as dirty and force an reload
+	void DirtyDecoratorsOnPropertyChanged();
 
 	/// Iterates over all active decorators attached to the decoration's element.
 	/// @param[inout] index Index to fetch. This is incremented after the fetch.
@@ -95,6 +98,7 @@ private:
 	// The list of currently active decorators.
 	std::vector< int > active_decorators;
 	bool active_decorators_dirty;
+	bool decorators_dirty;
 
 	// For each unique decorator name, this stores (in order of specificity) the name of the pseudo-class that has
 	// a definition for it, and the index into the list of decorators.

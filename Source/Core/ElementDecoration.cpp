@@ -38,6 +38,7 @@ ElementDecoration::ElementDecoration(Element* _element)
 {
 	element = _element;
 	active_decorators_dirty = false;
+	decorators_dirty = false;
 }
 
 ElementDecoration::~ElementDecoration()
@@ -132,6 +133,12 @@ void ElementDecoration::ReleaseDecorators()
 // Updates the list of active decorators (if necessary).
 void ElementDecoration::UpdateActiveDecorators()
 {
+	if (decorators_dirty)
+	{
+		ReloadDecorators();
+		decorators_dirty = false;
+	}
+
 	if (active_decorators_dirty)
 	{
 		active_decorators.clear();
@@ -176,6 +183,11 @@ void ElementDecoration::RenderDecorators()
 void ElementDecoration::DirtyDecorators()
 {
 	active_decorators_dirty = true;
+}
+
+void ElementDecoration::DirtyDecoratorsOnPropertyChanged()
+{
+	decorators_dirty = true;
 }
 
 // Iterates over all active decorators attached to the decoration's element.
