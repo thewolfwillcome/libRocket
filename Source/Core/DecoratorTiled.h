@@ -117,9 +117,9 @@ public:
 		TileOrientation orientation;
 	};
 
-	Colourb & GetColorMultiplier()
+	void SetColorMultiplier(const Colourb &multiplier)
 	{
-		return color_multiplier;
+		color_multiplier = multiplier;
 	}
 
 protected:

@@ -74,7 +74,7 @@ Decorator* DecoratorTiledBoxInstancer::InstanceDecorator(const String& ROCKET_UN
 
 	DecoratorTiledBox* decorator = new DecoratorTiledBox();
 
-	decorator->GetColorMultiplier() = properties.GetProperty("color-multiplier")->value.Get< Colourb >();
+	decorator->SetColorMultiplier(properties.GetProperty("color-multiplier")->value.Get< Colourb >());
 
 	if (decorator->Initialise(tiles, texture_names, rcss_paths))
 		return decorator;

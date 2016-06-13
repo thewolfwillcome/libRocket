@@ -55,7 +55,7 @@ Decorator* DecoratorTiledImageInstancer::InstanceDecorator(const String& ROCKET_
 
 	DecoratorTiledImage* decorator = new DecoratorTiledImage();
 
-	decorator->GetColorMultiplier() = properties.GetProperty("color-multiplier")->value.Get< Colourb >();
+	decorator->SetColorMultiplier(properties.GetProperty("color-multiplier")->value.Get< Colourb >());
 
 	if (decorator->Initialise(tile, texture_name, rcss_path))
 		return decorator;

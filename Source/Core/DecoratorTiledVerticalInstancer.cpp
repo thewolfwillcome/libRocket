@@ -59,7 +59,7 @@ Decorator* DecoratorTiledVerticalInstancer::InstanceDecorator(const String& ROCK
 
 	DecoratorTiledVertical* decorator = new DecoratorTiledVertical();
 
-	decorator->GetColorMultiplier() = properties.GetProperty("color-multiplier")->value.Get< Colourb >();
+	decorator->SetColorMultiplier(properties.GetProperty("color-multiplier")->value.Get< Colourb >());
 
 	if (decorator->Initialise(tiles, texture_names, rcss_paths))
 		return decorator;
