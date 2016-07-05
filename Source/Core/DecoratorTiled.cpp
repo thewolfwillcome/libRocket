@@ -29,6 +29,8 @@
 #include "DecoratorTiled.h"
 #include "../../Include/Rocket/Core.h"
 
+#include <math.h> // For floor
+
 namespace Rocket {
 namespace Core {
 

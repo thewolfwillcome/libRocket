@@ -31,6 +31,8 @@
 #include "TextureDatabase.h"
 #include "TextureResource.h"
 
+#include <math.h> // For floor
+
 namespace Rocket {
 namespace Core {
 

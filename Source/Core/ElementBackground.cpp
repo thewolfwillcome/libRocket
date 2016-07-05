@@ -31,6 +31,8 @@
 #include "../../Include/Rocket/Core/GeometryUtilities.h"
 #include "../../Include/Rocket/Core/Property.h"
 
+#include <math.h> // For floor
+
 namespace Rocket {
 namespace Core {
 
