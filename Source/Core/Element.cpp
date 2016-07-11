@@ -1590,7 +1590,10 @@ void Element::OnPropertyChange(const PropertyNameList& changed_properties)
 		changed_properties.find(BORDER_RIGHT_COLOR) != changed_properties.end() ||
 		changed_properties.find(BORDER_BOTTOM_COLOR) != changed_properties.end() ||
 		changed_properties.find(BORDER_LEFT_COLOR) != changed_properties.end() ||
-		changed_properties.find(OPACITY) != changed_properties.end())
+		changed_properties.find(OPACITY) != changed_properties.end() ||
+		// Also add short-hand properties for border width and border color
+		changed_properties.find(BORDER_WIDTH) != changed_properties.end() ||
+		changed_properties.find(BORDER_COLOR) != changed_properties.end())
 		border->DirtyBorder();
 
 	// Fetch a new font face if it has been changed.
