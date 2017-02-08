@@ -29,6 +29,7 @@
 #define ROCKETCONTROLSCLIPBOARD_H
 
 #include "../Core/WString.h"
+#include "Header.h"
 
 namespace Rocket {
 namespace Controls {
@@ -39,7 +40,7 @@ namespace Controls {
 	@author Peter Curry
  */
 
-class Clipboard
+class ROCKETCONTROLS_API Clipboard
 {
 public:
 	/// Get the current contents of the clipboard.
