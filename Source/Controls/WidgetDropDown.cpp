@@ -328,18 +328,21 @@ void WidgetDropDown::ProcessEvent(Core::Event& event)
 	}
 	else if (event == "keydown")
 	{
-		Core::Input::KeyIdentifier key_identifier = (Core::Input::KeyIdentifier) event.GetParameter< int >("key_identifier", 0);
-
-		switch (key_identifier)
+		if (!options.empty())
 		{
-			case Core::Input::KI_UP:
-				SetSelection((selected_option - 1 + (int)options.size()) % (int)options.size());
-				break;
-			case Core::Input::KI_DOWN:		
-				SetSelection((selected_option + 1) % (int)options.size());
-				break;
-			default:
-				break;
+			Core::Input::KeyIdentifier key_identifier = (Core::Input::KeyIdentifier) event.GetParameter< int >("key_identifier", 0);
+
+			switch (key_identifier)
+			{
+				case Core::Input::KI_UP:
+					SetSelection((selected_option - 1 + (int)options.size()) % (int)options.size());
+					break;
+				case Core::Input::KI_DOWN:		
+					SetSelection((selected_option + 1) % (int)options.size());
+					break;
+				default:
+					break;
+			}
 		}
 	}
 
