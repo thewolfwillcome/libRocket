@@ -262,6 +262,7 @@ void StyleSheetSpecification::RegisterDefaultProperties()
 
 	RegisterProperty(SCROLLBAR_MARGIN, "0", false, false).AddParser("number");
 	RegisterProperty(OPACITY, "1", true, false).AddParser("number");
+	RegisterProperty(COLOR_MULTIPLIER, "white", true, false).AddParser(COLOR);
 }
 
 }

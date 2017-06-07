@@ -162,7 +162,8 @@ void ElementImage::OnPropertyChange(const PropertyNameList& changed_properties)
 {
 	// Call base implementation
 	Element::OnPropertyChange(changed_properties);
-	if (changed_properties.find(OPACITY) != changed_properties.end())
+	if (changed_properties.find(OPACITY) != changed_properties.end()
+		|| changed_properties.find(COLOR_MULTIPLIER) != changed_properties.end())
 	{
 		// Opacity changed mark the geometry dirty so that it gets regenerated
 		// We could also change the color of the vertex data of the geometry, but this doesn't work due the usage of compiled geometries
@@ -216,12 +217,14 @@ void ElementImage::GenerateGeometry()
 	}
 
 	const float opacity = GetProperty<float>(OPACITY);
+	Colourb color_multiplier = GetProperty<Colourb>(COLOR_MULTIPLIER);
+	color_multiplier.alpha = (byte)floor(opacity == 1.0 ? 255 : (byte)(opacity * 256.0f));
 
 	Rocket::Core::GeometryUtilities::GenerateQuad(&vertices[0],									// vertices to write to
 												  &indices[0],									// indices to write to
 												  Vector2f(0, 0),					// origin of the quad
 												  GetBox().GetSize(Rocket::Core::Box::CONTENT),	// size of the quad
-												  Colourb(255, 255, 255, (byte)floor(opacity == 1.0 ? 255 : (byte)(opacity * 256.0f))),		// colour of the vertices
+												  color_multiplier,		// colour of the vertices
 												  texcoords[0],									// top-left texture coordinate
 												  texcoords[1]);								// top-right texture coordinate
 
