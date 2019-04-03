@@ -23,7 +23,8 @@ if(APPLE)
 
 		else(IOS)
 			# set the architectures for OS X
-			set (OSXI_ARCH i386 x86_64)
+			# We only support 64 bit builds under mac osx remove i386
+			set (OSXI_ARCH x86_64)
 			set (CMAKE_OSX_ARCHITECTURES ${OSXI_ARCH} CACHE string  "Build architecture for OS X universal binaries")		
 		endif(IOS)
 	endif (NOT CMAKE_OSX_ARCHITECTURES AND BUILD_UNIVERSAL_BINARIES)
@@ -271,10 +272,11 @@ foreach(library ${LIBRARIES})
 			${${library}_SRC_FILES}
     )
 
-    set_target_properties(${NAME} PROPERTIES
-                           VERSION ${PROJECT_VERSION}
-                           SOVERSION ${LIBROCKET_VERSION_MAJOR}
-    )
+	# TODO(sw) We don't want sonames and version 
+    #set_target_properties(${NAME} PROPERTIES
+    #                       VERSION ${PROJECT_VERSION}
+    #                       SOVERSION ${LIBROCKET_VERSION_MAJOR}
+    #)
     
     install(TARGETS ${NAME}
             EXPORT libRocketTargets
